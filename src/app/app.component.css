@@ -1,15 +1,1 @@
-li {
-  @apply flex items-center;
-  cursor: pointer;
-}
 
-.flex img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.grade{
-  color: yellow;
-}
