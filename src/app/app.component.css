@@ -1,0 +1,6 @@
+li {
+  @apply flex items-center;
+  cursor: pointer;
+}
+
+
