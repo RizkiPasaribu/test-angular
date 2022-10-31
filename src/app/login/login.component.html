@@ -17,27 +17,51 @@
       class="bg-white h-[500px] w-[450px] rounded-md shadow-2xl p-5 relative"
     >
       <div class="font-bold text-3xl text-center mt-10">LOGIN</div>
-      <div class="flex flex-col px-8">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+        class="flex flex-col px-8"
+      >
+        <!-- username input -->
         <mat-form-field appearance="standard">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" />
+          <input formControlName="username" matInput placeholder="Username" />
           <mat-icon matSuffix>account_circle</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Username" type="password" />
-          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="loginForm.invalid">
+            <ng-container> Required</ng-container>
+          </mat-error>
         </mat-form-field>
 
-        <!-- button submmit -->
-        <div
-          class="border border-solid border-black py-1 rounded-md text-center text-xl hover:bg-black hover:text-white transition"
+        <!-- password input -->
+        <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            placeholder="Password"
+            [type]="isShowPassword ? 'text' : 'password'"
+          />
+          <mat-icon
+            (click)="isShowPassword = !isShowPassword"
+            matSuffix
+            class="hover:opacity-50 cursor-pointer"
+            >{{ isShowPassword ? "visibility" : "visibility_off" }}</mat-icon
+          >
+          <mat-error *ngIf="loginForm.invalid">
+            <ng-container> Required</ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- submi button -->
+        <button
+          type="submit"
+          class="mt-2 border border-solid border-black py-1 rounded-md text-center text-xl hover:bg-black hover:text-white transition"
         >
           Submit
-        </div>
-      </div>
+        </button>
+      </form>
       <div
-        class="py-2 bg-black absolute w-full bottom-0 left-0 rounded-md text-white flex items-center justify-center text-xl"
+        class="py-2 bg-gray-400 absolute w-full bottom-0 left-0 rounded-md text-white flex items-center justify-center text-xl"
       >
         © Ryu-Dev
       </div>
