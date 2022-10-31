@@ -1,0 +1,12 @@
+li {
+  @apply flex items-center;
+  cursor: pointer;
+}
+
+a:hover{
+  opacity: 50%;
+}
+
+a.active{
+  @apply bg-black p-1 rounded-md text-white transition-all ease-out
+}
