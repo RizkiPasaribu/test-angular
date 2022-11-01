@@ -5,7 +5,7 @@
       <div>
         <ul class="flex space-x-6 justify-center ml-32">
           <li>
-            <a routerLink="/home" routerLinkActive="active">Home</a>
+            <a routerLink="" routerLinkActive="active">Home</a>
           </li>
           <li>
             <a routerLink="/menu" routerLinkActive="active">Menu</a>
@@ -30,9 +30,10 @@
         </li>
         <li>
           <div
+            (click)="logout()"
             class="bg-white border-2 border-solid border-black rounded-md px-3 hover:bg-black hover:text-white transition-colors ease-in-out"
           >
-            <a routerLink="/login" routerLinkActive="active">Login</a>
+            Logout
           </div>
         </li>
       </ul>

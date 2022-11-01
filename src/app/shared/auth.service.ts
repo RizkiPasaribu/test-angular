@@ -11,6 +11,8 @@ export class AuthService {
   // DI http client for comunication rest api (backend and fornt end)
   constructor(private http: HttpClient) {}
 
+  isLogin = false;
+
   login(payload: {
     username?: string | null;
     password?: string | null;
