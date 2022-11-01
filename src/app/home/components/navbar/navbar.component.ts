@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
@@ -8,12 +9,15 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private auth: AuthService, private route: Router) {}
+  constructor(private authService: AuthService, private route: Router) {}
 
   ngOnInit(): void {}
 
-  logout() {
-    this.auth.isLogin = false;
+  async logout() {
+    await lastValueFrom(this.authService.logout());
+    this.authService.isLogin = false;
+    localStorage.clear();
+    alert('Log Out Success');
     this.route.navigate(['/login']);
   }
 }

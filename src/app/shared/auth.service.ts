@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponse } from './auth-type';
 import { clientId, clientSecret } from 'src/environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,14 @@ export class AuthService {
   // DI http client for comunication rest api (backend and fornt end)
   constructor(private http: HttpClient) {}
 
+  //user login
   isLogin = false;
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
   login(payload: {
     username?: string | null;
@@ -24,5 +32,16 @@ export class AuthService {
       client_id: clientId,
       client_secret: clientSecret,
     });
+  }
+
+  logout(): Observable<{ revoked: boolean }> {
+    return this.http.post<{ revoked: true }>(
+      'https://dev.xtend.my.id/api/v1/authrevoke',
+      JSON.stringify({
+        token_type_hint: 'access_token',
+        token: localStorage.getItem('access_token'),
+      }),
+      this.httpOptions
+    );
   }
 }
