@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
@@ -9,7 +10,11 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService, private route: Router) {}
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
@@ -17,7 +22,11 @@ export class NavbarComponent implements OnInit {
     await lastValueFrom(this.authService.logout());
     this.authService.isLogin = false;
     localStorage.clear();
-    alert('Log Out Success');
+    this._snackBar.open('Log Out Successfully', '', {
+      duration: 3000,
+      verticalPosition: 'top',
+      panelClass: ['text-white', 'bg-red-500'],
+    });
     this.route.navigate(['/login']);
   }
 }
