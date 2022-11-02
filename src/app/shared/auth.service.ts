@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AuthResponse } from './auth-type';
 import { clientId, clientSecret } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
