@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 
@@ -13,10 +13,13 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: Router,
+    private activeRoute: ActivatedRoute,
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.activeRoute);
+  }
 
   async logout() {
     await lastValueFrom(this.authService.logout());

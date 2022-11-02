@@ -15,6 +15,8 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private route: Router) {}
   canActivate() {
+    console.log('ok');
+
     if (!this.auth.isLogin) {
       this.route.navigate(['/login']);
       return false;

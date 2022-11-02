@@ -3,10 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './home/components/navbar/navbar.component';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './home/components/footer/footer.component';
-import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,16 +12,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MainModule } from './main/main.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MainModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
