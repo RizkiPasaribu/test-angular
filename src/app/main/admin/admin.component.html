@@ -1,0 +1,53 @@
+<div class="h-screen flex">
+  <div class="w-1/2 flex bg-white items-center h-full justify-center">
+    <img src="/assets/addItem.png" />
+  </div>
+  <div class="w-1/2 h-full">
+    <div
+      class="mt-10 mx-auto text-4xl w-fit text-center p-3 border-b-2 border-solid border-black"
+    >
+      Add New Item
+    </div>
+
+    <!-- add item form -->
+    <div class="w-fit mx-auto rounded-lg shadow-lg bg-white p-10 mt-10">
+      <form class="mx-auto flex flex-col w-[400px]" (submit)="addItem()">
+        <mat-form-field appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name Item" />
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Type Product</mat-label>
+          <input matInput placeholder="Type Product" />
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" floatLabel="always">
+          <mat-label>Harga</mat-label>
+          <input
+            matInput
+            type="number"
+            class="example-right-align"
+            placeholder="10000"
+          />
+          <span matPrefix>Rp&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            placeholder="Descirption item"
+            style="height: 100px"
+          ></textarea>
+        </mat-form-field>
+        <button
+          type="submit"
+          class="border-solid border-2 border-black w-fit px-10 rounded-md text-xl self-end hover:bg-black hover:text-white transition-all"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

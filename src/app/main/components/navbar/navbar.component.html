@@ -36,7 +36,7 @@
           >
             <div class="w-[150px] h-[24px]">
               <p class="truncate">
-                {{ data?.nickName + " " + data?.lastName }}
+                {{ data?.nickName + " " + data?.lastName | titlecase }}
               </p>
             </div>
             <mat-icon class="material-icons-outlined">person</mat-icon>
