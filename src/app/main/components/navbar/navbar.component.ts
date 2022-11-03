@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class NavbarComponent implements OnInit {
   // varibel data
   data?: ProfileMe;
+  isOpen: boolean = false;
 
   constructor(
     private authService: AuthService,

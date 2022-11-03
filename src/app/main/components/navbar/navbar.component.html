@@ -1,5 +1,5 @@
 <div class="bg-white h-14 flex align items-center shadow-sm">
-  <div class="container mx-auto text-xl w-full flex items-center">
+  <div class="container mx-auto text-xl w-full h-full flex items-center">
     <div class="w-1/2 flex items-center">
       <div><span class="font-bold">Ryu-</span>Dev</div>
       <div>
@@ -28,12 +28,36 @@
             />
           </div>
         </li>
-        <li>
+
+        <li class="flex flex-col relative">
           <div
-            (click)="logout()"
-            class="bg-white border-2 border-solid border-black rounded-md px-3 hover:bg-black hover:text-white transition-colors ease-in-out"
+            class="bg-gray-100 shadow-md hover:opacity-50 px-2 py-[5px] rounded-md flex items-center transition-all"
+            (click)="isOpen = !isOpen"
           >
-            Logout
+            <div class="w-[150px] h-[24px]">
+              <p class="truncate">
+                {{ data?.nickName + " " + data?.lastName }}
+              </p>
+            </div>
+            <mat-icon class="material-icons-outlined">person</mat-icon>
+            <mat-icon *ngIf="!isOpen">expand_more</mat-icon>
+            <mat-icon *ngIf="isOpen">expand_less</mat-icon>
+          </div>
+
+          <!-- custom dropdown -->
+          <div
+            [ngClass]="[
+              'bg-white shadow-lg flex items-center absolute top-10 left-0 w-full z-10 h-9 transition-all',
+              isOpen ? 'scale-100 visible' : 'scale-0 invisible'
+            ]"
+          >
+            <li
+              class="flex justify-between px-2 py-[5px] hover:opacity-75 transition-all bg-black text-white w-full h-full"
+              (click)="logout()"
+            >
+              <div>Logout</div>
+              <mat-icon>logout</mat-icon>
+            </li>
           </div>
         </li>
       </ul>

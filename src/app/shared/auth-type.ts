@@ -6,7 +6,8 @@ export interface AuthResponse {
   refresh_token: string;
 }
 export interface ProfileMe {
-  isCentralOffice: number;
+  nickName: string;
+  lastName: string;
   nik?: string;
   nip?: string;
   email?: string;
