@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthResponse } from '../shared/auth-type';
 import { AuthService } from '../shared/auth.service';
@@ -16,14 +16,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private currentRoute: ActivatedRoute
   ) {}
 
   // lifecycle for init app
   ngOnInit(): void {
+    const { target } = this.currentRoute.snapshot.queryParams;
     if (localStorage.getItem('refresh_token')) {
       this.authService.isLogin = true;
-      this.router.navigate(['']);
+      this.router.navigate(['/home']);
     }
   }
 

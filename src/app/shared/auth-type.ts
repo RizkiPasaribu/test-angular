@@ -5,3 +5,9 @@ export interface AuthResponse {
   scope: null;
   refresh_token: string;
 }
+export interface ProfileMe {
+  isCentralOffice: number;
+  nik?: string;
+  nip?: string;
+  email?: string;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthResponse } from './auth-type';
+import { map, Observable, tap } from 'rxjs';
+import { AuthResponse, ProfileMe } from './auth-type';
 import { clientId, clientSecret } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -43,5 +43,16 @@ export class AuthService {
       }),
       this.httpOptions
     );
+  }
+
+  getMe(): Observable<ProfileMe> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    });
+
+    return this.http.get<ProfileMe>('https://dev.xtend.my.id/api/me', {
+      headers,
+    });
   }
 }
