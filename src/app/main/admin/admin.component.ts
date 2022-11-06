@@ -9,7 +9,7 @@ export class AdminComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
+  nama = 'rizki';
   addItem() {
     console.log('ok');
   }
