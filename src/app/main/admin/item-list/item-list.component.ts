@@ -1,8 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ItemService } from 'src/app/services/item/item.service';
-import { lastValueFrom } from 'rxjs';
 import { ItemList } from 'src/app/services/item/items-type';
 
 @Component({
@@ -15,10 +12,20 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe((data) => {
-      this.items_list = data;
+      this.items_list = data._embedded.item_list;
+      this.total_items = data.total_items;
     });
   }
 
+  pageEvent(data: any) {
+    this.itemService
+      .getItems(data.pageIndex + 1, data.pageSize)
+      .subscribe((data) => {
+        this.items_list = data._embedded.item_list;
+      });
+  }
+
+  total_items: number = 0;
   items_list: ItemList[] = [];
 
   displayedColumns: string[] = ['id', 'name', 'price', 'action'];

@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { AddItemComponent } from './admin/add-item/add-item.component';
 import { ItemListComponent } from './admin/item-list/item-list.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MainRoutingModule,
     MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class MainModule {}
