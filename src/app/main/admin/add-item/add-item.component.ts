@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
+  selector: 'app-add-item',
+  templateUrl: './add-item.component.html',
+  styleUrls: ['./add-item.component.css'],
 })
-export class AdminComponent implements OnInit {
+export class AddItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
   nama = 'rizki';
   addItem() {
     console.log('ok');

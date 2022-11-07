@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { AdminComponent } from './admin/admin.component';
+import { AddItemComponent } from './admin/add-item/add-item.component';
+import { ItemListComponent } from './admin/item-list/item-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home.component';
 import { MenuComponent } from './menu/menu.component';
@@ -26,11 +27,15 @@ const routes: Routes = [
       },
       {
         path: 'about',
-        component: AdminComponent,
+        component: AboutComponent,
       },
       {
         path: 'admin',
-        component: AdminComponent,
+        component: ItemListComponent,
+      },
+      {
+        path: 'admin/add-item',
+        component: AddItemComponent,
       },
     ],
   },

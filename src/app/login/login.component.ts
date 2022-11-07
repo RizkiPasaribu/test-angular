@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { AuthResponse } from '../shared/auth-type';
-import { AuthService } from '../shared/auth.service';
+import { AuthResponse } from '../services/auth/auth-type';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
