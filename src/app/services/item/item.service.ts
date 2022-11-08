@@ -8,17 +8,32 @@ import { Observable } from 'rxjs';
 export class ItemService {
   constructor(private http: HttpClient) {}
 
-  getItems(pageIndex: number = 1, pageSize: number = 25): Observable<any> {
-    const headers = new HttpHeaders({
+  httpOptions = {
+    headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    });
+    }),
+  };
+
+  getItems(pageIndex: number = 1, pageSize: number = 25): Observable<any> {
+    // modify the header
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('access_token')}`
+    );
 
     return this.http.get(
       `https://dev.xtend.my.id/api/v1/item-list?limit=${pageSize}&page=${pageIndex}`,
-      {
-        headers,
-      }
+      this.httpOptions
     );
+  }
+
+  addItem(data: any) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    });
+
+    return this.http.post(`https://dev.xtend.my.id/api/v1/item-list`, data, {
+      headers,
+    });
   }
 }

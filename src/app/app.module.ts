@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainModule } from './main/main.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
@@ -27,6 +28,7 @@ import { MainModule } from './main/main.module';
     HttpClientModule,
     MatSnackBarModule,
     MainModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

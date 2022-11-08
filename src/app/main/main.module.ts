@@ -14,6 +14,7 @@ import { AddItemComponent } from './admin/add-item/add-item.component';
 import { ItemListComponent } from './admin/item-list/item-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MainRoutingModule,
     MatTableModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
   ],
 })
 export class MainModule {}

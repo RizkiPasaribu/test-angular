@@ -6,26 +6,40 @@
 
   <!-- form input data -->
   <div class="w-1/2 h-full">
+    <div class="flex justify-end px-5">
+      <button class="opacity-60 hover:opacity-100" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <div
       class="mt-5 mx-auto text-4xl w-fit text-center p-3 border-b-2 border-solid border-black"
     >
       Add New Item
     </div>
     <div class="w-fit mx-auto rounded-lg shadow-lg bg-white p-10 mt-5">
-      <form class="mx-auto flex flex-col w-[400px]" (submit)="addItem()">
+      <form
+        class="mx-auto flex flex-col w-[400px]"
+        [formGroup]="addItemForm"
+        (submit)="addItem()"
+      >
         <mat-form-field appearance="legacy">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name Item" />
+          <input formControlName="name" matInput placeholder="Name Item" />
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="legacy">
           <mat-label>Type Product</mat-label>
-          <input matInput placeholder="Type Product" />
+          <input
+            formControlName="productType"
+            matInput
+            placeholder="Type Product"
+          />
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="legacy" floatLabel="always">
           <mat-label>Harga</mat-label>
           <input
+            formControlName="normalPrice"
             matInput
             type="number"
             class="example-right-align"
@@ -37,6 +51,7 @@
         <mat-form-field appearance="legacy">
           <mat-label>Description</mat-label>
           <textarea
+            formControlName="itemDescription"
             matInput
             placeholder="Descirption item"
             style="height: 100px"
@@ -52,15 +67,19 @@
           <div
             class="border solid border-l-0 rounded-r-md border-gray-300 h-full w-full flex items-center hover:border-black transition-all"
           >
-            <span class="ml-2">No File Choosen</span>
+            <span class="ml-2">{{ imageFile?.name }}</span>
           </div>
 
-          <input class="hidden" type="file" />
+          <input
+            (change)="imageHandler($event)"
+            formControlName="image"
+            class="hidden"
+            type="file"
+          />
         </label>
-
         <button
           type="submit"
-          class="mt-2 border-solid border border-black w-fit px-10 rounded-md text-xl self-end hover:bg-black hover:text-white transition-all"
+          class="bg-green-500 opacity-60 hover:opacity-100 text-white text-xl px-10 transition-all w-fit mt-2 self-end rounded-sm"
         >
           Add
         </button>
