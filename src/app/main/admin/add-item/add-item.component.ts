@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { ItemService } from 'src/app/services/item/item.service';
 
 @Component({
@@ -12,16 +11,10 @@ import { ItemService } from 'src/app/services/item/item.service';
 })
 export class AddItemComponent implements OnInit {
   addItemForm = new FormGroup({
-    productType: new FormControl('Product'),
-    name: new FormControl('SDSAD'),
-    itemDescription: new FormControl('sdafasdf'),
-    normalPrice: new FormControl(40000),
-    corporatePrice: new FormControl(40000),
-    costOfGoods: new FormControl(40000),
-    itemCategory: new FormControl('d34cef6c-4553-11ed-b1d4-0aafa9949a5e'),
-    itemMerk: new FormControl('59d1b336-1aae-11ec-8f60-0242ac110002'),
-    itemSupplierReferenceName: new FormControl('FIKIH'),
-    itemUnit: new FormControl('9b3a02a7-4877-11ed-b037-0aafa9949a5e'),
+    productType: new FormControl(''),
+    name: new FormControl(''),
+    itemDescription: new FormControl(''),
+    normalPrice: new FormControl(null),
   });
 
   imageFile?: { link: string; file: any; name: string };
@@ -35,15 +28,43 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {}
 
   addItem() {
-    // convert form grup to form data
     const convertFormData = new FormData();
+    // manual code because this fields can't input by user
+    convertFormData.append('corporatePrice', '40000');
+    convertFormData.append('costOfGoods', '40000');
+    convertFormData.append(
+      'itemCategory',
+      'd34cef6c-4553-11ed-b1d4-0aafa9949a5e'
+    );
+    convertFormData.append('itemMerk', '59d1b336-1aae-11ec-8f60-0242ac110002');
+    convertFormData.append('itemSupplierReferenceName', 'FIKIH');
+    convertFormData.append('itemUnit', '9b3a02a7-4877-11ed-b037-0aafa9949a5e');
+
+    // convert form grup to form data
     convertFormData.append('image', this.imageFile?.file);
     const object_data: any = this.addItemForm.value;
     for (const key in object_data) {
       convertFormData.append(key, object_data[key]);
     }
 
-    this.itemService.addItem(convertFormData).subscribe();
+    this.itemService.addItem(convertFormData).subscribe({
+      next: () => {
+        this._snackBar.open('Item Successfully Added', '', {
+          duration: 3000,
+          panelClass: ['text-white', 'bg-green-400'],
+          verticalPosition: 'top',
+        });
+      },
+      complete: () => {
+        //reset field
+        this.addItemForm.reset();
+        this.imageFile = {
+          link: '',
+          file: null,
+          name: '',
+        };
+      },
+    });
   }
 
   imageHandler(event: any) {

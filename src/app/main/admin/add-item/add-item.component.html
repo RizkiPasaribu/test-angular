@@ -7,8 +7,11 @@
   <!-- form input data -->
   <div class="w-1/2 h-full">
     <div class="flex justify-end px-5">
-      <button class="opacity-60 hover:opacity-100" (click)="closeModal()">
-        <mat-icon>close</mat-icon>
+      <button
+        class="opacity-60 hover:opacity-100 outline-none"
+        (click)="closeModal()"
+      >
+        <mat-icon class="material-symbols-outlined"> close </mat-icon>
       </button>
     </div>
     <div
@@ -67,7 +70,9 @@
           <div
             class="border solid border-l-0 rounded-r-md border-gray-300 h-full w-full flex items-center hover:border-black transition-all"
           >
-            <span class="ml-2">{{ imageFile?.name }}</span>
+            <span class="ml-2">{{
+              imageFile?.name ? imageFile?.name : ""
+            }}</span>
           </div>
 
           <input

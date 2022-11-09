@@ -15,12 +15,6 @@ export class AuthService {
   //user login
   isLogin = false;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-
   login(payload: {
     username?: string | null;
     password?: string | null;
@@ -40,19 +34,11 @@ export class AuthService {
       JSON.stringify({
         token_type_hint: 'access_token',
         token: localStorage.getItem('access_token'),
-      }),
-      this.httpOptions
+      })
     );
   }
 
   getMe(): Observable<ProfileMe> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    });
-
-    return this.http.get<ProfileMe>('https://dev.xtend.my.id/api/me', {
-      headers,
-    });
+    return this.http.get<ProfileMe>('https://dev.xtend.my.id/api/me');
   }
 }

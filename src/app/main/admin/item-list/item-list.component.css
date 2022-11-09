@@ -1,4 +1,7 @@
 .mat-column-action {
   text-align: center;
+}
 
+.mat-icon{
+  @apply opacity-70 hover:opacity-100 cursor-pointer transition-all
 }

@@ -11,9 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainModule } from './main/main.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GlobalInterceptor } from './services/global.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
@@ -30,7 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MainModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

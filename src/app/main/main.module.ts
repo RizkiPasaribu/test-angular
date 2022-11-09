@@ -15,6 +15,10 @@ import { ItemListComponent } from './admin/item-list/item-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { ConfirmComponent } from './admin/dialog/confirm/confirm.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     AddItemComponent,
     ItemListComponent,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +40,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatButtonModule,
   ],
+  providers: [],
 })
 export class MainModule {}

@@ -1,8 +1,10 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ItemService } from 'src/app/services/item/item.service';
 import { ItemList } from 'src/app/services/item/items-type';
 import { AddItemComponent } from '../add-item/add-item.component';
+import { ConfirmComponent } from '../dialog/confirm/confirm.component';
 
 @Component({
   selector: 'app-item-list',
@@ -17,7 +19,11 @@ export class ItemListComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 0;
 
-  constructor(private itemService: ItemService, public dialog: MatDialog) {}
+  constructor(
+    private itemService: ItemService,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog // private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe((data) => {
@@ -49,5 +55,47 @@ export class ItemListComponent implements OnInit {
           });
       }
     });
+  }
+
+  delete(uuid: string) {
+    // confirm dialog
+    const dialogdelete = this.dialog.open(ConfirmComponent, {
+      data: {
+        title: 'Delete Item',
+        message: 'Are You Sure Deleted This Item?',
+      },
+    });
+    dialogdelete.afterClosed().subscribe({
+      next: (result) => {
+        if (result == true) {
+          this.itemService.deleteItem(uuid).subscribe({
+            next: () => {
+              if (this.currentPage == 0 && this.pageSize == 0) {
+                this.ngOnInit();
+              } else {
+                this.itemService
+                  .getItems(this.currentPage, this.pageSize)
+                  .subscribe((data) => {
+                    this.items_list = data._embedded.item_list;
+                  });
+              }
+              this._snackBar.open('Item Successfully Deleted', '', {
+                duration: 3000,
+                panelClass: ['text-white', 'bg-green-400'],
+                verticalPosition: 'top',
+              });
+            },
+          });
+        }
+      },
+    });
+  }
+
+  info(uuid: string) {
+    console.log('info');
+  }
+
+  edit(uuid: string) {
+    console.log(uuid);
   }
 }
