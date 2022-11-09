@@ -33,10 +33,6 @@ const routes: Routes = [
         path: 'admin',
         component: ItemListComponent,
       },
-      {
-        path: 'admin/add-item',
-        component: AddItemComponent,
-      },
     ],
   },
 ];

@@ -15,6 +15,10 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
+// auth web
+// export const clientId = 'iqs-web-admin';
+// export const clientSecret = 'd979e29f23f';
+
 // auth
-export const clientId = 'iqs-web-admin';
-export const clientSecret = 'd979e29f23f';
+export const clientId = 'iqs-mobile-app';
+export const clientSecret = 'a78b4e9f01d';

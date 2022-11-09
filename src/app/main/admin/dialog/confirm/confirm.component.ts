@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ConfirmComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ConfirmComponent>,
+    // get value from item list component and pass to this dialog
     @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string }
   ) {}
 

@@ -16,18 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private _snackBar: MatSnackBar,
-    private currentRoute: ActivatedRoute
+    private _snackBar: MatSnackBar
   ) {}
 
   // lifecycle for init app
-  ngOnInit(): void {
-    const { target } = this.currentRoute.snapshot.queryParams;
-    if (localStorage.getItem('refresh_token')) {
-      this.authService.isLogin = true;
-      this.router.navigate(['/home']);
-    }
-  }
+  ngOnInit(): void {}
 
   // variabel
   isShowPassword: boolean = false;

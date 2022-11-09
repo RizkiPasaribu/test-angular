@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ItemService } from 'src/app/services/item/item.service';
 
@@ -22,12 +22,25 @@ export class AddItemComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<AddItemComponent>,
-    private itemService: ItemService
+    private itemService: ItemService,
+    // get value from item list component and pass to this dialog
+    @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.itemService.getItems(this.data).subscribe({
+      next: (result) => {
+        this.addItemForm.patchValue({
+          name: result.name,
+          productType: result.productType,
+          itemDescription: result.itemDescription,
+          normalPrice: result.normalPrice,
+        });
+      },
+    });
+  }
 
-  addItem() {
+  submit() {
     const convertFormData = new FormData();
     // manual code because this fields can't input by user
     convertFormData.append('corporatePrice', '40000');
@@ -41,30 +54,48 @@ export class AddItemComponent implements OnInit {
     convertFormData.append('itemUnit', '9b3a02a7-4877-11ed-b037-0aafa9949a5e');
 
     // convert form grup to form data
-    convertFormData.append('image', this.imageFile?.file);
+    if (this.imageFile) {
+      convertFormData.append('image', this.imageFile?.file);
+    }
+
     const object_data: any = this.addItemForm.value;
     for (const key in object_data) {
       convertFormData.append(key, object_data[key]);
     }
 
-    this.itemService.addItem(convertFormData).subscribe({
-      next: () => {
-        this._snackBar.open('Item Successfully Added', '', {
-          duration: 3000,
-          panelClass: ['text-white', 'bg-green-400'],
-          verticalPosition: 'top',
-        });
-      },
-      complete: () => {
-        //reset field
-        this.addItemForm.reset();
-        this.imageFile = {
-          link: '',
-          file: null,
-          name: '',
-        };
-      },
-    });
+    // edit data
+    if (this.data) {
+      this.itemService.editItem(convertFormData, this.data).subscribe({
+        next: () => {
+          this._snackBar.open('Successfully Edited Item ', '', {
+            duration: 3000,
+            panelClass: ['text-white', 'bg-green-400'],
+            verticalPosition: 'top',
+          });
+        },
+      });
+    }
+    // add data
+    else {
+      this.itemService.addItem(convertFormData).subscribe({
+        next: () => {
+          this._snackBar.open('Item Successfully Added', '', {
+            duration: 3000,
+            panelClass: ['text-white', 'bg-green-400'],
+            verticalPosition: 'top',
+          });
+        },
+        complete: () => {
+          //reset field
+          this.addItemForm.reset();
+          this.imageFile = {
+            link: '',
+            file: null,
+            name: '',
+          };
+        },
+      });
+    }
   }
 
   imageHandler(event: any) {

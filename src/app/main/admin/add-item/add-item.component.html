@@ -17,13 +17,14 @@
     <div
       class="mt-5 mx-auto text-4xl w-fit text-center p-3 border-b-2 border-solid border-black"
     >
-      Add New Item
+      <ng-container *ngIf="data"> Edit Item </ng-container>
+      <ng-container *ngIf="!data"> Add New Item </ng-container>
     </div>
     <div class="w-fit mx-auto rounded-lg shadow-lg bg-white p-10 mt-5">
       <form
         class="mx-auto flex flex-col w-[400px]"
         [formGroup]="addItemForm"
-        (submit)="addItem()"
+        (submit)="submit()"
       >
         <mat-form-field appearance="legacy">
           <mat-label>Name</mat-label>
@@ -71,22 +72,18 @@
             class="border solid border-l-0 rounded-r-md border-gray-300 h-full w-full flex items-center hover:border-black transition-all"
           >
             <span class="ml-2">{{
-              imageFile?.name ? imageFile?.name : ""
+              imageFile?.name ? imageFile?.name : "Choose Image"
             }}</span>
           </div>
 
-          <input
-            (change)="imageHandler($event)"
-            formControlName="image"
-            class="hidden"
-            type="file"
-          />
+          <input (change)="imageHandler($event)" class="hidden" type="file" />
         </label>
         <button
           type="submit"
           class="bg-green-500 opacity-60 hover:opacity-100 text-white text-xl px-10 transition-all w-fit mt-2 self-end rounded-sm"
         >
-          Add
+          <ng-container *ngIf="data"> Edit </ng-container>
+          <ng-container *ngIf="!data"> Add </ng-container>
         </button>
       </form>
     </div>

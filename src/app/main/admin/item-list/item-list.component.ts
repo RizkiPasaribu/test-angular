@@ -36,20 +36,22 @@ export class ItemListComponent implements OnInit {
     this.currentPage = data.pageIndex + 1;
     this.pageSize = data.pageSize;
     this.itemService
-      .getItems(this.currentPage, this.pageSize)
+      .getItems('', this.currentPage, this.pageSize)
       .subscribe((data) => {
         this.items_list = data._embedded.item_list;
       });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddItemComponent);
+  openDialog(uuid: string = ''): void {
+    const dialogRef = this.dialog.open(AddItemComponent, {
+      data: uuid,
+    });
     dialogRef.afterClosed().subscribe(() => {
       if (this.currentPage == 0 && this.pageSize == 0) {
         this.ngOnInit();
       } else {
         this.itemService
-          .getItems(this.currentPage, this.pageSize)
+          .getItems('', this.currentPage, this.pageSize)
           .subscribe((data) => {
             this.items_list = data._embedded.item_list;
           });
@@ -74,7 +76,7 @@ export class ItemListComponent implements OnInit {
                 this.ngOnInit();
               } else {
                 this.itemService
-                  .getItems(this.currentPage, this.pageSize)
+                  .getItems('', this.currentPage, this.pageSize)
                   .subscribe((data) => {
                     this.items_list = data._embedded.item_list;
                   });
@@ -96,6 +98,6 @@ export class ItemListComponent implements OnInit {
   }
 
   edit(uuid: string) {
-    console.log(uuid);
+    this.openDialog(uuid);
   }
 }
