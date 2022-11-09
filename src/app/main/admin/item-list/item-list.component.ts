@@ -5,6 +5,7 @@ import { ItemService } from 'src/app/services/item/item.service';
 import { ItemList } from 'src/app/services/item/items-type';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { ConfirmComponent } from '../dialog/confirm/confirm.component';
+import { DetailComponent } from '../dialog/detail/detail.component';
 
 @Component({
   selector: 'app-item-list',
@@ -94,7 +95,9 @@ export class ItemListComponent implements OnInit {
   }
 
   info(uuid: string) {
-    console.log('info');
+    const dialogdelete = this.dialog.open(DetailComponent, {
+      data: uuid,
+    });
   }
 
   edit(uuid: string) {

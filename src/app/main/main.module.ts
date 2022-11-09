@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ConfirmComponent } from './admin/dialog/confirm/confirm.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DetailComponent } from './admin/dialog/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
     AddItemComponent,
     ItemListComponent,
     ConfirmComponent,
+    DetailComponent,
   ],
   imports: [
     CommonModule,
