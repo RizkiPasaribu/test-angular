@@ -1,0 +1,7 @@
+{
+"/api/*": {
+    "target": "https://dev.xtend.my.id",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

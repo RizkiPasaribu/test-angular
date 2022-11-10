@@ -14,25 +14,22 @@ export class ItemService {
     pageSize: number = 25
   ): Observable<any> {
     if (uuid) {
-      return this.http.get(`https://dev.xtend.my.id/api/v1/item-list/${uuid}`);
+      return this.http.get(`/api/v1/item-list/${uuid}`);
     }
     return this.http.get(
-      `https://dev.xtend.my.id/api/v1/item-list?limit=${pageSize}&page=${pageIndex}`
+      `/api/v1/item-list?limit=${pageSize}&page=${pageIndex}`
     );
   }
 
   addItem(data: any) {
-    return this.http.post(`https://dev.xtend.my.id/api/v1/item-list`, data);
+    return this.http.post(`/api/v1/item-list`, data);
   }
 
   editItem(data: any, uuid: string) {
-    return this.http.patch(
-      `https://dev.xtend.my.id/api/v1/item-list/${uuid}`,
-      data
-    );
+    return this.http.patch(`/api/v1/item-list/${uuid}`, data);
   }
 
   deleteItem(data: string) {
-    return this.http.delete(`https://dev.xtend.my.id/api/v1/item-list/${data}`);
+    return this.http.delete(`/api/v1/item-list/${data}`);
   }
 }
