@@ -1,4 +1,12 @@
 img {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
-  object-position: center;
+  /* object-position: top; */
+}
+
+.mat-button{
+  margin-top: 10px;
+  @apply flex space-x-2 bg-green-400 text-white self-end;
+  /* margin-left: 100%; */
 }

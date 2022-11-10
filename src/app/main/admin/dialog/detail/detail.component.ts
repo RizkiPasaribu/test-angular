@@ -23,4 +23,8 @@ export class DetailComponent implements OnInit {
       },
     });
   }
+
+  coloseDialog() {
+    this.dialogRef.close();
+  }
 }

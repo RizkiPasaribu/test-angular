@@ -1,13 +1,39 @@
-<div class="h-[500px] w-[700px]">
-  <div
-    class="w-fit mx-auto p-3 rounded-md text-3xl bg-white shadow-lg font-bold"
-  >
-    ITEM DETAIL
-  </div>
-  <div class="flex mt-5 h-[400px]">
-    <div class="w-1/2 h-full flex items-center">
-      <img [src]="detailItem?.image" [alt]="detailItem?.name" />
+<div class="h-[350px] w-[600px] flex flex-col">
+  <div class="w-fit mx-auto p-3 rounded-md text-3xl font-bold">ITEM DETAIL</div>
+  <div class="flex mt-5">
+    <div class="w-1/2">
+      <img
+        [src]="detailItem?.image"
+        [alt]="detailItem?.name"
+        class="border border-solid"
+      />
     </div>
-    <div class="w-1/2 h-full"></div>
+    <div class="w-1/2 px-10">
+      <ul class="space-y-5">
+        <li>
+          <span class="block text-lg">Name :</span>
+          <span class="text-xl font-bold px-2 block">{{
+            detailItem?.name
+          }}</span>
+        </li>
+        <li>
+          <span class="block text-lg">Price :</span>
+          <span class="text-xl font-bold px-2">
+            {{ detailItem?.normalPrice | currency: "IDR ":"symbol":"3.0" }}
+          </span>
+        </li>
+        <li>
+          <span class="block text-lg">Description:</span>
+          <div class="text-xl font-bold px-2">
+            {{ detailItem?.itemDescription }}
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
+
+  <button (click)="coloseDialog()" mat-button>
+    <mat-icon> arrow_back_ios </mat-icon>
+    <span class="-ml-1 text-lg">Back</span>
+  </button>
 </div>
