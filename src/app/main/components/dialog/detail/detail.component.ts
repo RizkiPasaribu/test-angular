@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ItemService } from 'src/app/services/item/item.service';
+import { ItemService } from '../../../item.service';
 
 @Component({
   selector: 'app-detail',

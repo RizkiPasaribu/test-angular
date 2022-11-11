@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainModule } from './main/main.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { GlobalInterceptor } from './services/global.interceptor';
+import { GlobalInterceptor } from './shared/services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, LoginComponent],

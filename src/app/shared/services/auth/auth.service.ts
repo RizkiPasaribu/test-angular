@@ -16,24 +16,18 @@ export class AuthService {
       'Content-Type': 'application/json',
     }),
   };
-  //user login
-  isLogin = false;
 
   login(payload: {
     username?: string | null;
     password?: string | null;
   }): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
-      'https://dev.xtend.my.id/oauth',
-      {
-        username: payload.username,
-        password: payload.password,
-        grant_type: 'password',
-        client_id: clientId,
-        client_secret: clientSecret,
-      },
-      this.httpOptions
-    );
+    return this.http.post<AuthResponse>('https://dev.xtend.my.id/oauth', {
+      username: payload.username,
+      password: payload.password,
+      grant_type: 'password',
+      client_id: clientId,
+      client_secret: clientSecret,
+    });
   }
 
   logout(): Observable<{ revoked: boolean }> {
@@ -42,8 +36,7 @@ export class AuthService {
       JSON.stringify({
         token_type_hint: 'access_token',
         token: localStorage.getItem('access_token'),
-      }),
-      this.httpOptions
+      })
     );
   }
 

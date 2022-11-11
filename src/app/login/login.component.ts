@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { AuthResponse } from '../services/auth/auth-type';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthResponse } from '../shared/services/auth/auth-type';
+import { AuthService } from '../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     await lastValueFrom(this.authService.login(this.loginForm.value))
       .then((data: AuthResponse) => {
-        this.authService.isLogin = true;
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('expires_in', data.expires_in.toString());
         localStorage.setItem('refresh_token', data.refresh_token);

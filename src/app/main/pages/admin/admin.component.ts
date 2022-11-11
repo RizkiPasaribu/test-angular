@@ -1,18 +1,18 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ItemService } from 'src/app/services/item/item.service';
-import { ItemList } from 'src/app/services/item/items-type';
-import { AddItemComponent } from '../add-item/add-item.component';
-import { ConfirmComponent } from '../dialog/confirm/confirm.component';
-import { DetailComponent } from '../dialog/detail/detail.component';
+import { ItemService } from '../../item.service';
+import { ItemList } from '../../items-type';
+import { AddItemComponent } from '../../components/dialog/add-item/add-item.component';
+import { ConfirmComponent } from '../../components/dialog/confirm/confirm.component';
+import { DetailComponent } from '../../components/dialog/detail/detail.component';
 
 @Component({
-  selector: 'app-item-list',
-  templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.css'],
+  selector: 'app-admin-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css'],
 })
-export class ItemListComponent implements OnInit {
+export class AdminComponent implements OnInit {
   total_items: number = 0;
   items_list: ItemList[] = [];
   displayedColumns: string[] = ['id', 'name', 'price', 'action'];

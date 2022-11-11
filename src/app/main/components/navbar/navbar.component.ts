@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { ProfileMe } from 'src/app/services/auth/auth-type';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProfileMe } from 'src/app/shared/services/auth/auth-type';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
 
   async logout() {
     await lastValueFrom(this.authService.logout());
-    this.authService.isLogin = false;
     localStorage.clear();
     this._snackBar.open('Log Out Successfully', '', {
       duration: 3000,
