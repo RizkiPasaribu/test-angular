@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
   // varibel data
+  isLoading = true;
   data?: ProfileMe;
   isOpen: boolean = false;
 
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getMe().subscribe({
       next: (data) => {
         this.data = data;
+        this.isLoading = false;
       },
       error: (err) => console.log(err),
     });

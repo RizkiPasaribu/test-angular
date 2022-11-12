@@ -21,6 +21,8 @@ import { DetailComponent } from './components/dialog/detail/detail.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ItemService } from './item.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -77,6 +79,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(routes),
   ],
   providers: [ItemService],

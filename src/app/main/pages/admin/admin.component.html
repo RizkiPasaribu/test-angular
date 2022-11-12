@@ -49,6 +49,10 @@
 
     <!-- table -->
     <div>
+      <mat-progress-bar
+        *ngIf="isloading"
+        mode="indeterminate"
+      ></mat-progress-bar>
       <table mat-table [dataSource]="items_list" class="w-full">
         <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

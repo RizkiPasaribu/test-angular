@@ -10,3 +10,8 @@ a:hover{
 a.active{
   @apply bg-black p-1 rounded-md text-white transition-all ease-out
 }
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #000000;
+}

@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   total_items: number = 0;
   items_list: ItemList[] = [];
   displayedColumns: string[] = ['id', 'name', 'price', 'action'];
-  // sengaja aku buat agar ketika nanti model ditutup data current page nya akan tetap ada dan tidak tereset
+  isloading = true;
   currentPage: number = 0;
   pageSize: number = 0;
 
@@ -30,6 +30,7 @@ export class AdminComponent implements OnInit {
     this.itemService.getItems().subscribe((data) => {
       this.items_list = data._embedded.item_list;
       this.total_items = data.total_items;
+      this.isloading = false;
     });
   }
 

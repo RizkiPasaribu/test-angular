@@ -30,14 +30,16 @@
           </div>
         </li>
 
-        <li class="flex flex-col relative">
+        <li class="flex flex-col relative" *ngIf="!isLoading">
           <div
             class="bg-gray-100 shadow-md hover:opacity-50 px-2 py-[5px] rounded-md flex items-center transition-all"
             (click)="isOpen = !isOpen"
           >
             <div class="w-[150px] h-[24px]">
               <p class="truncate">
-                {{ data?.nickName + " " + data?.lastName | titlecase }}
+                <ng-container>
+                  {{ data?.nickName + " " + data?.lastName | titlecase }}
+                </ng-container>
               </p>
             </div>
             <mat-icon class="material-icons-outlined">person</mat-icon>

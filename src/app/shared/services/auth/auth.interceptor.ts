@@ -11,13 +11,6 @@ import { Observable } from 'rxjs';
 export class GlobalInterceptor implements HttpInterceptor {
   constructor() {}
 
-  private exceptions = [
-    '/oauth',
-    '/assets',
-    '/api/me',
-    '/employee-photo-submit',
-  ] as string[];
-
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
