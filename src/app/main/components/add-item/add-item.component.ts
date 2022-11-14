@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ItemService } from '../../../item.service';
+import { MyLayoutService } from 'src/app/shared/layout/my-layout/my-layout.service';
+import { ItemService } from '../../item.service';
 
 @Component({
   selector: 'app-add-item',
@@ -20,7 +20,7 @@ export class AddItemComponent implements OnInit {
   imageFile?: { link: string; file: any; name: string };
 
   constructor(
-    private _snackBar: MatSnackBar,
+    private myLayout: MyLayoutService,
     public dialogRef: MatDialogRef<AddItemComponent>,
     private itemService: ItemService,
     // get value from item list component and pass to this dialog
@@ -67,11 +67,7 @@ export class AddItemComponent implements OnInit {
     if (this.data) {
       this.itemService.editItem(convertFormData, this.data).subscribe({
         next: () => {
-          this._snackBar.open('Successfully Edited Item ', '', {
-            duration: 3000,
-            panelClass: ['text-white', 'bg-green-400'],
-            verticalPosition: 'top',
-          });
+          this.myLayout.mySnackbar('Successfully Edited Item ');
         },
       });
     }
@@ -79,11 +75,7 @@ export class AddItemComponent implements OnInit {
     else {
       this.itemService.addItem(convertFormData).subscribe({
         next: () => {
-          this._snackBar.open('Item Successfully Added', '', {
-            duration: 3000,
-            panelClass: ['text-white', 'bg-green-400'],
-            verticalPosition: 'top',
-          });
+          this.myLayout.mySnackbar('Item Successfully Added');
         },
         complete: () => {
           //reset field

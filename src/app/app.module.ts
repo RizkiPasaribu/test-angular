@@ -15,9 +15,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainModule } from './main/main.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalInterceptor } from './shared/services/auth/auth.interceptor';
+import { MyLayoutComponent } from './shared/layout/my-layout/my-layout.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+    MyLayoutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

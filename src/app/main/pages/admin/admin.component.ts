@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ItemService } from '../../item.service';
 import { ItemList } from '../../items-type';
-import { AddItemComponent } from '../../components/dialog/add-item/add-item.component';
-import { ConfirmComponent } from '../../components/dialog/confirm/confirm.component';
-import { DetailComponent } from '../../components/dialog/detail/detail.component';
+import { AddItemComponent } from '../../components/add-item/add-item.component';
+import { ConfirmComponent } from '../../components/confirm/confirm.component';
+import { DetailComponent } from '../../components/detail/detail.component';
+import { MyLayoutService } from 'src/app/shared/layout/my-layout/my-layout.service';
 
 @Component({
   selector: 'app-admin-admin',
@@ -22,7 +23,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private _snackBar: MatSnackBar,
+    private myLayout: MyLayoutService,
     public dialog: MatDialog // private _snackBar: MatSnackBar
   ) {}
 
@@ -83,11 +84,7 @@ export class AdminComponent implements OnInit {
                     this.items_list = data._embedded.item_list;
                   });
               }
-              this._snackBar.open('Item Successfully Deleted', '', {
-                duration: 3000,
-                panelClass: ['text-white', 'bg-green-400'],
-                verticalPosition: 'top',
-              });
+              this.myLayout.mySnackbar('Item Successfully Deleted');
             },
           });
         }

@@ -1,33 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeComponent } from './home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { AboutComponent } from './pages/about/about.component';
-import { AddItemComponent } from './components/dialog/add-item/add-item.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { ConfirmComponent } from './components/dialog/confirm/confirm.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MatButtonModule } from '@angular/material/button';
-import { DetailComponent } from './components/dialog/detail/detail.component';
+import { DetailComponent } from './components/detail/detail.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ItemService } from './item.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MyLayoutComponent } from '../shared/layout/my-layout/my-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: MyLayoutComponent,
     children: [
       {
         path: '',
@@ -50,18 +48,11 @@ const routes: Routes = [
         path: 'admin',
         component: AdminComponent,
       },
-      {
-        path: 'detail',
-        component: DetailComponent,
-      },
     ],
   },
 ];
 @NgModule({
   declarations: [
-    NavbarComponent,
-    FooterComponent,
-    HomeComponent,
     DashboardComponent,
     MenuComponent,
     AboutComponent,

@@ -3,11 +3,11 @@ li {
   cursor: pointer;
 }
 
-a:hover{
+a:hover {
   opacity: 50%;
 }
 
-a.active{
+a.active {
   @apply bg-black p-1 rounded-md text-white transition-all ease-out
 }
 
