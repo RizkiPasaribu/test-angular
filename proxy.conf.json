@@ -3,5 +3,10 @@
     "target": "https://dev.xtend.my.id",
     "secure": false,
     "changeOrigin": true
+  },
+"/oauth": {
+  "target": "https://dev.xtend.my.id",
+  "secure": false,
+  "changeOrigin": true
   }
 }

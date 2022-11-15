@@ -15,10 +15,8 @@ export class GlobalInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    // cara pertama
     const url = 'https://dev.xtend.my.id';
     let params = request.urlWithParams.replace(url, '');
-
     if (params == '/api/v1/authrevoke') {
       return next.handle(
         request.clone({

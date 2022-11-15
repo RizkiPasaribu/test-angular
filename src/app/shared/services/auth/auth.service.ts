@@ -21,7 +21,7 @@ export class AuthService {
     username?: string | null;
     password?: string | null;
   }): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('https://dev.xtend.my.id/oauth', {
+    return this.http.post<AuthResponse>('/oauth', {
       username: payload.username,
       password: payload.password,
       grant_type: 'password',
@@ -32,7 +32,7 @@ export class AuthService {
 
   logout(): Observable<{ revoked: boolean }> {
     return this.http.post<{ revoked: true }>(
-      'https://dev.xtend.my.id/api/v1/authrevoke',
+      '/api/v1/authrevoke',
       JSON.stringify({
         token_type_hint: 'access_token',
         token: localStorage.getItem('access_token'),
@@ -41,6 +41,6 @@ export class AuthService {
   }
 
   getMe(): Observable<ProfileMe> {
-    return this.http.get<ProfileMe>('https://dev.xtend.my.id/api/me');
+    return this.http.get<ProfileMe>('/api/me');
   }
 }
