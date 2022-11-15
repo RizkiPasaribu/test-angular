@@ -16,6 +16,7 @@ import { MainModule } from './main/main.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalInterceptor } from './shared/services/auth/auth.interceptor';
 import { MyLayoutComponent } from './shared/layout/my-layout/my-layout.component';
+import { ProgressSpinnerComponent } from './shared/components/progress-spinner/progress-spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MyLayoutComponent } from './shared/layout/my-layout/my-layout.component
     PageNotFoundComponent,
     LoginComponent,
     MyLayoutComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { MyLayoutComponent } from './shared/layout/my-layout/my-layout.component
     MatSnackBarModule,
     MainModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },

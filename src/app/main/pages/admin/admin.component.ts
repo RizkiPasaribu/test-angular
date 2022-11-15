@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
   total_items: number = 0;
   items_list: ItemList[] = [];
   displayedColumns: string[] = ['id', 'name', 'price', 'action'];
-  isloading = true;
+  isLoading = true;
   currentPage: number = 0;
   pageSize: number = 0;
 
@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
     this.itemService.getItems().subscribe((data) => {
       this.items_list = data._embedded.item_list;
       this.total_items = data.total_items;
-      this.isloading = false;
+      this.isLoading = false;
     });
   }
 
@@ -73,10 +73,12 @@ export class AdminComponent implements OnInit {
     dialogdelete.afterClosed().subscribe({
       next: (result) => {
         if (result == true) {
+          this.isLoading = true;
           this.itemService.deleteItem(uuid).subscribe({
             next: () => {
               if (this.currentPage == 0 && this.pageSize == 0) {
                 this.ngOnInit();
+                this.isLoading = false;
               } else {
                 this.itemService
                   .getItems('', this.currentPage, this.pageSize)

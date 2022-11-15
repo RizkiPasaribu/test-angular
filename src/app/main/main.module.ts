@@ -19,8 +19,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ItemService } from './item.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MyLayoutComponent } from '../shared/layout/my-layout/my-layout.component';
+import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
 
 const routes: Routes = [
   {
@@ -60,6 +60,7 @@ const routes: Routes = [
     AdminComponent,
     ConfirmComponent,
     DetailComponent,
+    ProgressBarComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +72,6 @@ const routes: Routes = [
     MatSnackBarModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
     RouterModule.forChild(routes),
   ],
   providers: [ItemService],

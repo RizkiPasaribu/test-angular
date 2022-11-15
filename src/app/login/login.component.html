@@ -58,7 +58,7 @@
           type="submit"
           class="disabled:bg-white disabled:text-black flex items-center space-x-3 justify-center mt-2 border border-solid border-black py-1 rounded-md text-xl hover:bg-black hover:text-white transition"
         >
-          <mat-spinner *ngIf="isLoading" diameter="20" color=""></mat-spinner>
+          <app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
           <span *ngIf="isLoading"> Loading... </span>
           <span *ngIf="!isLoading"> Submit </span>
         </button>
