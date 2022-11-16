@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { MyLayoutService } from '../shared/layout/my-layout/my-layout.service';
 import { AuthResponse } from '../shared/services/auth/auth-type';
 import { AuthService } from '../shared/services/auth/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +17,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private myLayout: MyLayoutService
+    private myLayout: MyLayoutService,
+    private location: Location
   ) {}
 
   // lifecycle for init app
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('refresh_token')) this.location.back();
+  }
 
   // variabel
   isShowPassword: boolean = false;
