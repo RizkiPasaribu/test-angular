@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private myLayout: MyLayoutService,
     private location: Location
-  ) {}
-
-  // lifecycle for init app
-  ngOnInit(): void {
+  ) {
     if (localStorage.getItem('refresh_token')) this.location.back();
   }
+
+  // lifecycle for init app
+  ngOnInit(): void {}
 
   // variabel
   isShowPassword: boolean = false;

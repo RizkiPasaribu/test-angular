@@ -48,6 +48,7 @@ export class AdminComponent implements OnInit {
   openDialog(uuid: string = ''): void {
     const dialogRef = this.dialog.open(AddItemComponent, {
       data: uuid,
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(() => {
       if (this.currentPage == 0 && this.pageSize == 0) {
@@ -69,6 +70,7 @@ export class AdminComponent implements OnInit {
         title: 'Delete Item',
         message: 'Are You Sure Deleted This Item?',
       },
+      disableClose: true,
     });
     dialogdelete.afterClosed().subscribe({
       next: (result) => {
@@ -97,6 +99,7 @@ export class AdminComponent implements OnInit {
   info(uuid: string) {
     const dialogdelete = this.dialog.open(DetailComponent, {
       data: uuid,
+      disableClose: true,
     });
   }
 
