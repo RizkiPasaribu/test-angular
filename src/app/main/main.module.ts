@@ -18,6 +18,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ItemService } from './item.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MyLayoutComponent } from '../shared/layout/my-layout/my-layout.component';
 import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
@@ -72,6 +73,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatButtonModule,
     MatProgressBarModule,
+    MatTooltipModule,
     RouterModule.forChild(routes),
   ],
   providers: [ItemService],
