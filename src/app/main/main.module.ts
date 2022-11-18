@@ -36,18 +36,22 @@ const routes: Routes = [
       {
         path: 'home',
         component: DashboardComponent,
+        data: { animation: 'HomePage' },
       },
       {
         path: 'menu',
         component: MenuComponent,
+        data: { animation: 'MenuPage' },
       },
       {
         path: 'about',
         component: AboutComponent,
+        data: { animation: 'AboutPage' },
       },
       {
         path: 'admin',
         component: AdminComponent,
+        data: { animation: 'AdminPage' },
       },
     ],
   },

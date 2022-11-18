@@ -68,11 +68,6 @@
   </div>
 </div>
 
-<router-outlet></router-outlet>
-
-<!-- simple footer -->
-<div
-  class="bg-white h-[50px] flex items-center justify-center font-bold text-xl"
->
-  © Ryu-Dev
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>
